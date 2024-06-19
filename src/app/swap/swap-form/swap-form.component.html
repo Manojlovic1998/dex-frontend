@@ -1,0 +1,134 @@
+<form
+  action=""
+  class="flex flex-col gap-4"
+  [formGroup]="swapForm"
+  (submit)="onSubmit()"
+>
+  <div class="relative">
+    <!-- Dropdown Asset 1 -->
+    <div class="dropdown static">
+      <button
+        tabindex="0"
+        type="button"
+        class="flex items-center gap-2 asset1 badge badge-neutral absolute top-0 right-[1rem] bottom-0 my-auto text-lg py-4 px-5 z-[4]"
+      >
+        @for (token of tokenList; track $index) { @if (token.ticker ===
+        swapForm.get('firstToken')?.value) {
+        <img
+          [src]="token.img"
+          [attr.alt]="token.name"
+          class="w-6 h-6 rounded-full"
+        />
+        {{ token.name }}
+        }}
+
+        <ng-icon name="heroChevronDownSolid" size="24"></ng-icon>
+      </button>
+
+      <div
+        tabindex="0"
+        class="dropdown-content card card-compact menu bg-neutral rounded-box card-bordered absolute top-full right-[1rem] z-[5]"
+      >
+        <div class="card-body">
+          <div class="join flex-col w-fit overflow-y-scroll max-h-96">
+            @for (token of tokenList; track $index) {
+            <div
+              class="join items-center relative"
+              (click)="selectToken(token, 'firstToken')"
+            >
+              <img
+                [src]="token.img"
+                [attr.alt]="token.name"
+                class="w-6 h-6 rounded-full join-item absolute ml-3 z-30"
+              />
+              <input
+                type="radio"
+                formControlName="firstToken"
+                class="btn join-item w-full pl-12 rounded-none"
+                [attr.aria-label]="token.ticker"
+                [attr.value]="token.ticker"
+                [checked]="token.ticker === swapForm.get('firstToken')?.value"
+              />
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <input
+      type="number"
+      placeholder="0"
+      class="input input-bordered input-lg w-full"
+      formControlName="firstAmount"
+    />
+  </div>
+  <div class="relative">
+    <!-- Dropdown Asset 2 -->
+    <div class="dropdown static">
+      <button
+        tabindex="0"
+        type="button"
+        class="flex items-center gap-2 asset1 badge badge-neutral absolute top-0 right-[1rem] bottom-0 my-auto text-lg py-4 px-5 z-[4]"
+      >
+        @for (token of tokenList; track $index) { @if (token.ticker ===
+        swapForm.get('secondToken')?.value) {
+        <img
+          [src]="token.img"
+          [attr.alt]="token.name"
+          class="w-6 h-6 rounded-full"
+        />
+        {{ token.name }}
+
+        } }
+
+        <ng-icon name="heroChevronDownSolid" size="24"></ng-icon>
+      </button>
+
+      <div
+        tabindex="0"
+        class="dropdown-content card card-compact menu bg-neutral rounded-box card-bordered absolute top-full right-[1rem] z-[5]"
+      >
+        <div class="card-body">
+          <div class="join flex-col w-fit overflow-y-scroll max-h-96">
+            @for (token of tokenList; track $index) {
+            <div
+              class="join items-center relative"
+              (click)="selectToken(token, 'secondToken')"
+            >
+              <img
+                [src]="token.img"
+                [attr.alt]="token.name"
+                class="w-6 h-6 rounded-full join-item absolute ml-3 z-30"
+              />
+              <input
+                type="radio"
+                class="btn join-item w-full pl-12 rounded-none"
+                formControlName="secondToken"
+                [attr.aria-label]="token.ticker"
+                [attr.value]="token.ticker"
+                [checked]="
+                  token.ticker === swapForm.get('secondToken')?.value?.ticker
+                "
+              />
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <input
+      type="number"
+      placeholder="0"
+      class="input input-bordered input-lg w-full"
+      formControlName="secondAmount"
+    />
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary btn-lg w-full"
+    [disabled]="!swapForm.valid"
+  >
+    Swap
+  </button>
+</form>

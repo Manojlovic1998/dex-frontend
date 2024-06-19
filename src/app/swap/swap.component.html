@@ -1,0 +1,14 @@
+<div class="max-w-5xl min-h-screen">
+  <div class="card card-bordered bg-base-200 max-w-[612px] mx-auto mt-20">
+    <div class="card-body">
+      <div class="relative mb-5">
+        <h2 class="card-title">Swap</h2>
+        <app-slippage-dropdown
+          class="absolute -top-1/2 right-0 translate-y-1 z-[6]"
+          [slippageArr]="[0.5, 2.5, 5.0]"
+        ></app-slippage-dropdown>
+      </div>
+      <app-swap-form></app-swap-form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="dropdown dropdown-bottom dropdown-end">
+  <button tabindex="0" type="button" class="btn btn-ghost btn-circle">
+    <ng-icon name="heroCog6ToothSolid" size="24"></ng-icon>
+  </button>
+
+  <div
+    tabindex="0"
+    class="dropdown-content z-[5] card card-bordered card-compact menu p-2 shadow bg-base-100 rounded-box min-w-96"
+  >
+    <div class="card-body">
+      <h3 class="card-title">Settings</h3>
+      <p class="font-semibold mt-3 mb-2">Slippage Tolerance</p>
+      <div class="join join-horizontal card-bordered w-fit">
+        @for(slippage of slippageArr; track $index) {
+        <input
+          type="radio"
+          name="slippage"
+          class="btn join-item"
+          [attr.aria-label]="slippage + '%'"
+          value="{{ slippage }}"
+        />
+        }
+      </div>
+    </div>
+  </div>
+</div>
