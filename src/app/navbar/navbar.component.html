@@ -1,5 +1,5 @@
 <div class="navbar bg-base-100 mt-4">
-  <div class="flex-none">
+  <!-- <div class="flex-none">
     <button class="btn btn-square btn-ghost">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -15,15 +15,75 @@
         ></path>
       </svg>
     </button>
-  </div>
+  </div> -->
   <div class="flex-1">
-    <a class="btn btn-ghost text-xl">Dex</a>
+    <a class="btn btn-ghost text-xl" routerLink="/">
+      <div
+        class="bg-primary h-8 w-8 flex justify-center items-center rounded-md"
+      >
+        <ng-icon name="aspectsCubes" size="24" class="text-white"></ng-icon>
+      </div>
+      Dexify</a
+    >
   </div>
   <div class="navbar-end flex flex-row gap-6">
+    <div class="dropdown">
+      <div
+        tabindex="0"
+        role="button"
+        class="btn flex items-center justify-center gap-2"
+      >
+        <div
+          class="bg-primary rounded-full w-6 h-6 flex items-center justify-center"
+        >
+          <ng-icon name="heroSparkles" size="16" class="text-white"> </ng-icon>
+        </div>
+        Theme
+      </div>
+      <ul
+        tabindex="0"
+        class="dropdown-content z-[999] p-2 shadow-2xl bg-base-300 rounded-box w-52"
+      >
+        <li>
+          <input
+            type="radio"
+            name="theme-dropdown"
+            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+            aria-label="Default"
+            value="default"
+            checked="checked"
+          />
+        </li>
+        <li>
+          <input
+            type="radio"
+            name="theme-dropdown"
+            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+            aria-label="Light"
+            value="light"
+          />
+        </li>
+        <li>
+          <input
+            type="radio"
+            name="theme-dropdown"
+            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+            aria-label="Cupcake"
+            value="cupcake"
+          />
+        </li>
+      </ul>
+    </div>
     <button class="btn rounded-full">
       <img src="assets/image/eth.svg" class="h-6 w-6" alt="Ethereum icon." />
       Ethereum
     </button>
-    <button class="btn btn-primary rounded-full px-6">Connect</button>
+    <button
+      class="btn btn-primary rounded-full px-6"
+      (click)="onConnect()"
+      [disabled]="account !== null"
+    >
+      {{ account !== null ? account : "Connect" }}
+    </button>
   </div>
 </div>

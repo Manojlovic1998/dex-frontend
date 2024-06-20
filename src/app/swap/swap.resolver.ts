@@ -3,9 +3,10 @@ import { SwapService, Token } from './swap.service';
 import { inject } from '@angular/core';
 
 export const swapResolver: ResolveFn<Token[]> = (route, state) => {
-  if (inject(SwapService).tokenList.length === 0) {
-    inject(SwapService).fetchTokenList();
+  const swService = inject(SwapService);
+  if (swService.tokenList.length === 0) {
+    swService.fetchTokenList();
   }
 
-  return inject(SwapService).tokenList;
+  return swService.tokenList;
 };
